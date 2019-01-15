@@ -1,0 +1,21 @@
+subprojects{
+	apply plugin: 'java'
+	apply plugin : 'eclipse'
+	version = "1.0.0"
+	//sourceCompatibility = 1.8
+	
+	compileJava.options.encoding = 'UTF-8'
+
+	repositories {
+      mavenLocal()
+	  mavenCentral()
+	}
+	
+	dependencies {
+		//compile 'com.fasterxml.jackson.core:jackson-core:2.6.2'
+		//compile 'com.fasterxml.jackson.core:jackson-databind:2.6.2'
+		
+	}
+	
+	task allDeps(type: DependencyReportTask) {}
+}

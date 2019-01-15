@@ -1,0 +1,5 @@
+rootProject.name = 'spring-module'
+
+include 'spring-transaction'
+
+project(':spring-transaction').projectDir = new File('../spring-transaction')
