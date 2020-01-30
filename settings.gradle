@@ -1,3 +1,3 @@
 rootProject.name = 'spring-project'
 
-include 'spring-module','spring-transaction'
+include 'spring-module'
