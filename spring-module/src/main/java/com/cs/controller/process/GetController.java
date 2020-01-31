@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cs.initialize.operations.BeanInitializeOperation;
 import com.cs.model.base.EmployeeModel;
 import com.cs.model.base.ManagerModel;
 import com.cs.model.base.SalaryModel;
@@ -25,6 +26,38 @@ public class GetController {
   
   @RequestMapping(value = "/get", method = RequestMethod.GET)
   public String getTest()
+  {
+    BeanInitializeOperation beanInitializeOperation = context.getBean(BeanInitializeOperation.class);
+    return method().toString();
+  }
+  
+  public StringBuffer method() {
+    opearationTested();
+    StringBuffer strBuffer = new StringBuffer();
+    strBuffer.append("In case of single class");
+    strBuffer.append("When scope is singelton --> SAME instance every time");
+    strBuffer.append("When scope is singelton --> NEW instance every time");
+    strBuffer.append("\n\n");
+
+    strBuffer.append("In case of double class");
+    strBuffer.append("When scope of Outer is single and inner is prototype respectively");
+    strBuffer.append("When scope is singelton and prototype --> SAME instance every time outer and inner both");
+    strBuffer.append("\n\n");
+
+    strBuffer.append("In case of double class");
+    strBuffer.append("When scope of Outer is prototype and inner is prototype respectively");
+    strBuffer.append("When scope is prototype and prototype --> NEW instance for outer and SAME instance for inner");
+    strBuffer.append("\n\n");
+
+    strBuffer.append("In case of double class");
+    strBuffer.append("When scope of Outer is prototype and inner is singelton respectively");
+    strBuffer.append("When scope is prototype and singelto --> NEW instance for outer and SAME instance for inner");
+    strBuffer.append("\n\n");
+    
+    return strBuffer;
+  }
+
+  private void opearationTested()
   {
     ManagerModel managerBeanFirst = context.getBean(ManagerModel.class);
     EmployeeModel employeeModelFirst = managerBeanFirst.getEmployeeModel();
@@ -51,32 +84,5 @@ public class GetController {
     System.out.println("-------- Singleton with Prototype inside Manager is singelton and Employee is prototype ---");
     System.out.println("Manager Bean"+ managerBean.toString());
     System.out.println("Manager Bean"+ managerBean.toString());
-    
-    return method().toString();
-  }
-  
-  public StringBuffer method() {
-    StringBuffer strBuffer = new StringBuffer();
-    strBuffer.append("In case of single class");
-    strBuffer.append("When scope is singelton --> SAME instance every time");
-    strBuffer.append("When scope is singelton --> NEW instance every time");
-    strBuffer.append("\n\n");
-
-    strBuffer.append("In case of double class");
-    strBuffer.append("When scope of Outer is single and inner is prototype respectively");
-    strBuffer.append("When scope is singelton and prototype --> SAME instance every time outer and inner both");
-    strBuffer.append("\n\n");
-
-    strBuffer.append("In case of double class");
-    strBuffer.append("When scope of Outer is prototype and inner is prototype respectively");
-    strBuffer.append("When scope is prototype and prototype --> NEW instance for outer and SAME instance for inner");
-    strBuffer.append("\n\n");
-
-    strBuffer.append("In case of double class");
-    strBuffer.append("When scope of Outer is prototype and inner is singelton respectively");
-    strBuffer.append("When scope is prototype and singelto --> NEW instance for outer and SAME instance for inner");
-    strBuffer.append("\n\n");
-    
-    return strBuffer;
   }
 }
