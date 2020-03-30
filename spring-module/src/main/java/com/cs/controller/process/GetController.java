@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cs.initialize.operations.BeanInitializeOperation;
+import com.cs.interactor.IGetInteractor;
 import com.cs.model.base.EmployeeModel;
 import com.cs.model.base.ManagerModel;
 import com.cs.model.base.SalaryModel;
@@ -24,9 +25,13 @@ public class GetController {
   @Autowired
   private ApplicationContext context;
   
+  @Autowired
+  private IGetInteractor getInteractor;
+  
   @RequestMapping(value = "/get", method = RequestMethod.GET)
   public String getTest()
   {
+    getInteractor.process();
     BeanInitializeOperation beanInitializeOperation = context.getBean(BeanInitializeOperation.class);
     return method().toString();
   }

@@ -12,5 +12,8 @@
  
 	<context:component-scan base-package="com.cs.*" />
 	
+	<!--  To initiate the custom annotation -->
+	 <bean id = "annotationIntegrationWithSpring" class="com.cs.custom.annotation.AnnotationIntegrationWithSpring" />
+	
 	
 </beans>
